@@ -12,23 +12,28 @@
 */
 
 fscanf(STDIN, '%d\n', $n);	// получаем цифру - количество будущих строк
-$strings = array();			// массив строчек
-$string = array();
+$line = array();
+$strings = array();			// массив всех строчек
 $result = array();
-$final = array();
+
+$m = array();  		// массив цифер в каждой строчке - вложенный массив
 
 for($i = 0; $i < $n; $i++) {	// считываем n строк
-	$strings[$i] = fgets(STDIN);
-	$string = $strings[$i];		// записываем элемент как отдельный массив одной строки - string
-	foreach($string as $val) {
-		if($val == 1) {			// проверяем каждое число в строке. если единица - добавляем в массив result
-			array_push($result, $val);
-			if(count($result) >=2){	// если в каждой строке имеется минимум 2 единицы
-				array_push($final, $result) 	// добавляем строку в массив финала - это задача, с которой команда справится 
-			}
+	$strings[$i] = fgets(STDIN);	// теперь $strings - двумерный массив строк
+	}
+
+
+
+
+	for($i = 0; $i < count($strings); $i++) {
+		$strings[$i] = explode(' ', $strings[$i]);		// расфигачиваем каждую строку на отдельнцые кусочки-цифры
+		if(array_sum($strings[$i]) > 1){		// если сумма строки >= 2  - 
+			array_push($result, $strings[$i]);		// добавляем ее в массив результата
 		}
-	}
-	}
+	}	
+	
+	
+printf(count($result));
 
 		
 
