@@ -27,5 +27,15 @@ for($i = 0; $i < strlen($n); $i++) {
 	}	
 }
 
+// from Kakashka with love, exclusively for Snotinka
 
+$vowels = [
+	'A', 'O', 'Y', 'E', 'U', 'I',
+	'a', 'o', 'y', 'e', 'u', 'i'
+];
 
+for($i = 0; $i < strlen($n); $i++) {
+	if(!in_array($n[$i], $vowels)) {
+		printf("." . mb_strtolower($n[$i]));
+	}
+}
