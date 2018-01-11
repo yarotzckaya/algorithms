@@ -45,7 +45,7 @@ fscanf(STDIN, '%d%d\n', $n, $k);
 // Only one line, no format string.
 $line = fgets(STDIN);
 $points = explode(' ', $line);	// расфигачить массив на отдельные кусочки 
-for($i = 0; $i < count($points); ++$i) {	// преобразование кусочков в тип числа
+for($i = 0; $i < $points); ++$i) {	// преобразование кусочков в тип числа
 	$points[$i] = (int)$points[$i];
 }
 
