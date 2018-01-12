@@ -11,51 +11,85 @@
 */
 
 fscanf(STDIN, '%s\n', $line);	// считываем последовательность
-$result = "NO";
 
+$result = "NO";
 
 $line = str_split($line);		// превращаем строку в массив, каждый элемент которого - 1 цифра
 
 //прыгаем от позиции к позиции, выясняя, есть ли 7 одинаковых позиций подряд
 
-for($i = 0; $i < count($line); $i++) {	
-	if($line[$i] == '0') {								// 0
-		if($line[$i + 1] == '0') {						// 0
-			if($line[$i + 2] == '0') {					// 0
-				if($line[$i + 3] == '0'){  				// 0
-					if($line[$i + 4] == '0') { 			// 0
-						if($line[$i + 5] === '0') {		// 0
-							if($line[$i + 6] === '0') {	// 0
-								$result = "YES";
-							}
-						}
-					}
+// for($i = 0; $i < count($line); $i++) {	
+// 	if($line[$i] == '0') {								// 0
+// 		if($line[$i + 1] == '0') {						// 0
+// 			if($line[$i + 2] == '0') {					// 0
+// 				if($line[$i + 3] == '0'){  				// 0
+// 					if($line[$i + 4] == '0') { 			// 0
+// 						if($line[$i + 5] == '0') {		// 0
+// 							if($line[$i + 6] == '0') {	// 0
+// 								$result = "YES";
+// 							}
+// 						}
+// 					}
 
-				}	
-			}
-		}
-	}
+// 				}	
+// 			}
+// 		}
+// 	}
 
-	 if ($line[$i] == '1') {						// 1
-		if($line[$i + 1] == '1') {						// 1
-			if($line[$i + 2] == '1') {					// 1
-				if($line[$i + 3] == '1'){  				// 1
-					if($line[$i + 4] == '1') { 			// 1
-						if($line[$i + 5] === '1') {		// 1
-							if($line[$i + 6] === '1') {	// 1
-								$result = "YES";
-							}
-						}
-					}
+// 	 if ($line[$i] == '1') {						// 1
+// 		if($line[$i + 1] == '1') {						// 1
+// 			if($line[$i + 2] == '1') {					// 1
+// 				if($line[$i + 3] == '1'){  				// 1
+// 					if($line[$i + 4] == '1') { 			// 1
+// 						if($line[$i + 5] == '1') {		// 1
+// 							if($line[$i + 6] == '1') {	// 1
+// 								$result = "YES";
+// 							}
+// 						}
+// 					}
 
-				}	
-			}
-		}
-	} 
+// 				}	
+// 			}
+// 		}
+// 	} 
 
+// }
+
+// printf($result);
+
+
+
+// Solution 1 (Antonio for Snotinka)
+
+if(strpos($line, '0000000') !== false || strpos($line, '1111111') !== false) {	// strpos() может вернуть 0 как позицию, и чтобы не принять ее за фолс - юзаем !==
+	printf('YES');
+} else { 
+	printf('NO');
 }
 
-printf($result);
+// end of Solution 1
 
+// Solution 2 (Tosha for Snotya)
 
+$line = str_split($line);
 
+$symbol = $line[0];
+$count = 1;
+for($i = 1; $i < count($line); ++$i) {
+	if($line[$i] == $symbol) {
+		++$count;
+		if($count == 7) {
+			printf('YES');
+			break;
+		}
+	} else {
+		$symbol = $line[$i];
+		$count = 1;
+	}
+}
+
+if($count != 7) {
+	printf('NO');
+}
+
+// end of Solution 2
