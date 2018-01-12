@@ -16,4 +16,18 @@ fscanf(STDIN, '%s\n', $line);	// получаем последовательно
 $line = explode("+", $line);	//теперь line - это просто массив с цифрами
 
 
+sort($line);
+// foreach ($line as $v) {
+// 	printf($v);
+
+// }
+
+for($i = 0; $i < count($line); $i++) {
+	printf($line[$i]);
+	if($line[$i + 1] != null) {
+		printf("+");
+	}
+}
+
+
 
