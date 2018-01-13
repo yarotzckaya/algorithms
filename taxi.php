@@ -24,29 +24,86 @@ fscanf(STDIN, '%d\n', $n);	// считываем кол-во групп школ
 $line = fgets(STDIN);				// считываем группы школьников как строку
 $groups = explode(' ', $line);	// теперь groups - это массив чисел
 
+$groupOfOne = 0;
+$groupOfTwo = 0;
+$groupOfThree = 0;
+$groupOfFour = 0;
 
-if((array_sum($groups) % 4) == 0){		// проверяем, можно ли поделить всех школьников на группы, по 4 человека в каждой
-	$cars = array_sum($groups) / 4;		// в каждую машину сажаем 1 группу школьников
-	printf($cars);
-	} else {
-	
-	$cars = array();
-	
-	$total = ceil(array_sum($groups) / 4);
+for($i = 0; $i < count($groups); ++$i) {
+	$groups[$i] = (int)$groups[$i];
+	if($groups[$i] == 1) {
+		$groupOfOne += 1;
 	}
+	if($groups[$i] == 2) {
+		$groupOfTwo += 1;
+	}
+	if($groups[$i] == 3) {
+		$groupOfThree += 1;
+	}
+	if($groups[$i] == 4) {
+		$groupOfFour += 1;
+	}
+}
 
-printf($total);
+// all 4
+$taxi = 0;
+$taxi += $groupOfFour;
+
+// 3 + 1
+$min = min($groupOfThree, $groupOfOne);
+$taxi += $min;
+$groupOfThree -= $min;
+$groupOfOne -= $min;
+
+// all 3
+$taxi += $groupOfThree;
+
+// 2
+$taxi += floor($groupOfTwo / 2);
+$groupOfTwo = $groupOfTwo % 2;
+
+// all 2 + 1
+$fancyCar = 0;
+$fancyCar = $groupOfTwo * 2;
+
+while($groupOfOne > 0 && $fancyCar < 4) {
+	$fancyCar += 1;
+	$groupOfOne -= 1;
+}
+
+if($fancyCar > 0) {
+	$taxi += 1;
+}
+
+// all 1
+$taxi += ceil($groupOfOne / 4);
+
+printf($taxi);
+
+// if((array_sum($groups) % 4) == 0){		// проверяем, можно ли поделить всех школьников на группы, по 4 человека в каждой
+// 	$cars = array_sum($groups) / 4;		// в каждую машину сажаем 1 группу школьников
+// 	printf($cars);
+// 	} else {
+	
+	// $cars = array();
+	
+	// $total = ceil(array_sum($groups) / 4);
+	
+
+	// printf($total);
 
 //этим решением я пыталась создать двумерный массив, где i - это машины с 4 местами, а j - это школьники. Оно сработало не на всех тестах.
 
-// 	for($i = 0; $i < $total; $i++) { 	
+// 	for($i = 0; $i < $n; $i++) { 	
 // 		for ($j = 0; $j < 4; $j++) { 
-// 			$cars[$i][$j] = 1;
+// 			$cars[$i][$j] = $groups[$i];
+// 			if(count($cars[$i]) > $n) {
+// 				break;
+// 			}
 // 		}
 		
-
 // 	}
-// }
+
 
 // printf(count($cars));
 
