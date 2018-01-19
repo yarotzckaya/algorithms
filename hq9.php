@@ -33,9 +33,9 @@ for($i = 0; $i < count($line); $i++){
 	if($line[$i] == "9"){
 		$result = "YES";
 	}
-	if($line[$i] == "+"){
-		$result = "YES";
-	}
+	// if($line[$i] == "+"){	!! Символ + НЕ СЧИТАЕТСЯ сообщением!
+	// 	$result = "YES";
+	// }
 
 }
 if($result!== 0){
