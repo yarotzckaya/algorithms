@@ -18,5 +18,21 @@ $totalWithBonus = $total + $bonusCounter;
 $taxCounter = $total * $tax;
 $result = $totalWithBonus + $taxCounter;
 
-print_r(round($result, 2));
+
+function check(){
+
+	// prints formatted sum of the whole items
+
+	echo "-------------------------------------------" . "\n";
+	echo "Burger(2): " .  $b = ($GLOBALS["firstBurger"] +  $GLOBALS["secondBurger"]) . "\n";
+	echo "Coctail: " . $GLOBALS["coctail"] . "\n";
+	echo "Cola: " . $GLOBALS["cola"] . "\n";
+	echo "Tax: " . $GLOBALS["tax"] . "\n";
+	echo "Bonus: " . $GLOBALS["bonus"] . "\n";
+	echo "Total: " . round($GLOBALS["result"], 2) . "\n";
+	echo "-------------------------------------------";
+
+}
+
+check();
 
