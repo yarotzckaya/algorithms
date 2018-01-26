@@ -12,13 +12,13 @@
 
 fscanf(STDIN, '%s\n', $line);
 $word = str_split($line); 	
-$counter = count($word) + 3;
+$counter = count($word) + 3;	// без этого последнее вхождение WUB-а почему-то не прочитывалось
 
 for($i = 0; $i < $counter; $i++){
-	if($word[$i] == "W" && $word[$i + 1] == "U" && $word[$i + 2] == "B"){
-		unset($word[$i], $word[$i + 1], $word[$i + 2]);
-		print_r(" ");
+	if($word[$i] == "W" && $word[$i + 1] == "U" && $word[$i + 2] == "B"){	
+		unset($word[$i], $word[$i + 1], $word[$i + 2]);		// удаляем нафиг WUB
+		print_r(" ");						// печатаем пробел вместо WUB, который будет разделять слова
 	}
-	print_r($word[$i]);
+	print_r($word[$i]);		// печатаем слово
 }
 
